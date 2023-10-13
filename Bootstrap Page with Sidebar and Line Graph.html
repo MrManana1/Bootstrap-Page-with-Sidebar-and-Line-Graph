@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Page with Sidebar and Line Graph</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar (Hidden on mobile, visible on larger screens) -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fa fa-shopping-cart"></i> Orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fa fa-cube"></i> Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fa fa-users"></i> Customers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fa fa-bar-chart"></i> Reports</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fa fa-plug"></i> Integrations</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Mobile Navigation Icon (Visible on mobile) -->
+            <div class="col-12 d-md-none text-center">
+                <a class="nav-link" href="#sidebar" data-toggle="collapse" data-target="#sidebar">
+                    <span>&#9776;</span> <!-- This represents the hamburger icon -->
+                </a>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+
+                <canvas id="lineChart" width="400" height="200"></canvas>
+
+                <!-- Table -->
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Data Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sunday</td>
+                            <td>12</td>
+                        </tr>
+                        <tr>
+                            <td>Monday</td>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday</td>
+                            <td>5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Chart.js data and options
+        const chartData = {
+            labels: [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+            ],
+            datasets: [
+                {
+                    data: [12, 19, 3, 5, 2, 3, 5],
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    borderWidth: 2,
+                    fill: false,
+                },
+            ],
+        };
+
+        const chartOptions = {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                },
+            },
+        };
+
+        const ctx = document.getElementById("lineChart").getContext("2d");
+        new Chart(ctx, {
+            type: "line",
+            data: chartData,
+            options: chartOptions,
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
